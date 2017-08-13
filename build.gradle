@@ -29,7 +29,13 @@ configurations {
 	providedRuntime
 }
 
-ext.springVersion = '4.3.0.RELEASE'
+ext {
+    versions =[
+    	springVersion : '4.3.0.RELEASE',
+    	jackson : '2.8.0',
+    	guava : '19.0'
+    ]
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
@@ -37,7 +43,7 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	
 	//Spring
-	compile 'org.springframework:spring-context:' + springVersion
+	compile 'org.springframework:spring-context:' + project.ext.versions.springVersion
 	
 	// Hibernate
 	compile 'org.hibernate:hibernate-core:5.2.4.Final'    		
@@ -73,5 +79,13 @@ dependencies {
 	compile("org.springframework:spring-jdbc:+")
     compile("commons-dbcp:commons-dbcp:1.4")
     compile("mysql:mysql-connector-java:5.0.8")
+    
+    //jackson
+	compile group : 'com.fasterxml.jackson.core', name : 'jackson-core', version : project.ext.versions.jackson
+	compile group : 'com.fasterxml.jackson.core', name : 'jackson-annotations', version : project.ext.versions.jackson
+	compile group : 'com.fasterxml.jackson.core', name : 'jackson-databind', version : project.ext.versions.jackson
+	
+	//Google Guava
+	compile group : 'com.google.guava', name : 'guava', version : project.ext.versions.guava
 	
 }
